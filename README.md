@@ -5,3 +5,5 @@ Blender add-on: Select two vertices. Set a distance. Click any of the three butt
 Download the files and save them to a location of your choice.
 
 In Blender, navigate to "Edit", then "Preferences", then "Add-ons", then "Install...". Navigate to and select the "vertex_insert.py".
+
+If you find this add-on valuable, please support me here for 2$: https://storme.gumroad.com/l/cykon
