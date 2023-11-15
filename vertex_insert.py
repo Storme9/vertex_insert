@@ -168,15 +168,15 @@ class OBJECT_OT_first_vertices(Operator):
             bpy.data.objects[selected_name[0].name].select_set(True)
 
 #Join the created vertex and the initially selected object.    
+            
             q = [bpy.context.selected_objects[0], bpy.data.objects['newMesh']]
-
-            ctx = bpy.context.copy()
-
-            ctx['active_object'] = q[0]
-
-            ctx['selected_editable_objects'] = q 
-
-            bpy.ops.object.join(ctx)            
+            
+            q[0].select_set(True)
+            q[1].select_set(True)
+            
+            bpy.context.view_layer.objects.active = q[0]
+            
+            bpy.ops.object.join()          
 
 #Make the initially selected object active, select it and enter edit mode.
             bpy.ops.object.select_all(action='DESELECT')
@@ -237,7 +237,7 @@ class OBJECT_OT_both_vertices(Operator):
             bm = bmesh.from_edit_mesh(data)
 
             z = [s.co for s in bm.select_history if isinstance(s, bmesh.types.BMVert)]
-            
+            print(z)
             v = []          
             for x in z:
                 v.append(mathutils.Vector((((x[0]*ob_x_scale) + location_x),((x[1]*ob_y_scale) + location_y),((x[2]*ob_z_scale) + location_z))))
