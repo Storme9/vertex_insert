@@ -299,14 +299,13 @@ class OBJECT_OT_both_vertices(Operator):
 
 #Join the created vertex and the initially selected object.    
             q = [bpy.context.selected_objects[0], bpy.data.objects['newMesh']]
-
-            ctx = bpy.context.copy()
-
-            ctx['active_object'] = q[0]
-
-            ctx['selected_editable_objects'] = q 
-
-            bpy.ops.object.join(ctx)            
+            
+            q[0].select_set(True)
+            q[1].select_set(True)
+            
+            bpy.context.view_layer.objects.active = q[0]
+            
+            bpy.ops.object.join()           
 
 #Make the initially selected object active, select it and enter edit mode.
             bpy.ops.object.select_all(action='DESELECT')
